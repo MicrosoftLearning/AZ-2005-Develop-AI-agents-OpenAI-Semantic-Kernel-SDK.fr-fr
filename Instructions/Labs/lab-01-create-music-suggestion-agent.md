@@ -15,11 +15,11 @@ Vous êtes développeur pour un service de streaming audio international. Vous a
 
 ## Objectifs
 
-En effectuant ce labo, vous allez effectuer les opérations suivantes :
+En effectuant ce labo, vous allez effectuer les opérations suivantes :
 
-* Créer un point de terminaison pour le service LLM (Large Language Model)
-* Générer un objet de noyau sémantique
-* Exécuter des invites à l’aide du Kit de développement logiciel (SDK) du noyau sémantique
+* Créer un point de terminaison pour le service LLM (Large Language Model, grand modèle de langage)
+* Générer un objet Semantic Kernel
+* Exécuter des prompts à l’aide du kit SDK Semantic Kernel
 * Créer des fonctions et des plug-ins de noyau sémantique
 * Utiliser le planificateur Handlebars pour automatiser les tâches
 
@@ -39,27 +39,15 @@ Pour effectuer l’exercice, les éléments suivants doivent être installés da
 Pour ces exercices, un projet de démarrage est mis à votre disposition. Effectuez les étapes suivantes pour configurer le projet de démarrage :
 
 > [!IMPORTANT]
-> Vous devez installer .NET Framework 8.0 et un compte Github pour effectuer ces étapes.
+> Vous devez avoir installé .NET Framework 8.0 ainsi que les extensions de VS Code pour C# et le gestionnaire de packages NuGet.
 
-1. Ouvrez Visual Studio Code.
+1. Téléchargez le fichier zip situé sur `https://github.com/MicrosoftLearning/AZ-2005-Develop-AI-agents-OpenAI-Semantic-Kernel-SDK/blob/master/Allfiles/Labs/01/Lab-01-Starter.zip`.
 
-1. Sous la section **Démarrer** de Visual Studio Code , sélectionnez **le référentiel git clone**.
+1. Extrayez le contenu du fichier zip vers un emplacement facile à trouver et à mémoriser, par exemple un dossier sur votre Bureau.
 
-1. Dans la barre d’URL, entrez `https://github.com/MicrosoftLearning/MSLearn-Develop-AI-Agents-with-Azure-OpenAI-and-Semantic-Kernel-SDK.git`
+1. Ouvrez Visual Studio Code, puis sélectionnez **Fichier** > **Ouvrir le dossier**.
 
-1. Dans l’Explorateur de fichiers, créez un dossier dans un emplacement facile à trouver et à mémoriser, tel qu’un dossier dans votre Bureau.
-
-1. Cliquez sur le bouton **Sélectionner en tant que destination du référentiel**.
-
-    Vous devez être connecté à GitHub pour cloner correctement le projet.
-
-1. Ouvrez le projet dans Visual Studio Code.
-
-1. Dans l’Explorateur, cliquez avec le bouton droit sur le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**, puis cliquez sur **Ouvrir dans le terminal intégré**.
-
-1. Développez le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**.
-
-    Vous devez voir un fichier « Program.cs ».
+1. Accédez au dossier **Starter** que vous avez extrait, puis sélectionnez **Sélectionner un dossier**.
 
 1. Ouvrez le fichier **Program.cs** dans l’éditeur de code.
 
@@ -82,7 +70,7 @@ Pour cet exercice, vous créez un point de terminaison pour le service de grand 
 
 1. Dans la page **Vue d’ensemble**, sélectionnez **Accéder à Azure OpenAI Studio**.
 
-:::image type="content" source="../media/model-deployments.png" alt-text="Capture d’écran de la page déploiements Azure OpenAI.":::
+:::image type="content" source="../media/model-deployments.png" alt-text="Capture d’écran de la page de déploiements Azure OpenAI.":::
 
 1. Sélectionnez **Créer un déploiement**, puis **Déployer un modèle**.
 
@@ -90,7 +78,7 @@ Pour cet exercice, vous créez un point de terminaison pour le service de grand 
 
     Utiliser la version de modèle par défaut
 
-1. Entrez un nom pour votre déploiement
+1. Donnez un nom à votre déploiement
 
 1. Une fois le déploiement terminé, revenez à votre ressource Azure OpenAI.
 
@@ -102,19 +90,9 @@ Pour cet exercice, vous créez un point de terminaison pour le service de grand 
 
 Dans cet exercice, vous apprenez à créer votre premier projet de Kit de développement logiciel (SDK) Semantic Kernel (Noyau sémantique). Vous apprenez à créer un projet, à ajouter le package NuGet du Kit de développement logiciel (SDK) Semantic Kernel et à ajouter une référence au Kit de développement logiciel (SDK) Semantic Kernel. C’est parti !
 
-1. Ouvrez Visual Studio Code.
+1. Retournez à votre projet Visual Studio Code.
 
-1. Dans l’Explorateur, cliquez avec le bouton droit sur le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**, puis cliquez sur **Ouvrir dans le terminal intégré**.
-
-1. Développez le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**.
-
-    Vous devez voir un fichier « Program.cs ».
-
-1. Ouvrez le fichier **Program.cs** dans l’éditeur de code.
-
-1. Ouvrez le terminal dans le répertoire de votre projet.
-
-    Vous pouvez ouvrir le terminal en cliquant avec le bouton droit sur le dossier du projet et en sélectionnant « Ouvrir dans le terminal intégré »
+1. Ouvrez le terminal en sélectionnant **Terminal** > **Nouveau terminal**.
 
 1. Dans le terminal, exécutez la commande suivante pour installer le Kit de développement logiciel (SDK) Semantic Kernel :
 
@@ -198,7 +176,7 @@ Dans cette tâche, vous créez un plug-in qui vous permet d’ajouter des chanso
         // Read the existing content from the file
         string filePath = "Files/RecentlyPlayed.txt";
         string jsonContent = File.ReadAllText(filePath);
-        var RecentlyPlayed = (JsonArray) JsonNode.Parse(jsonContent);
+        var recentlyPlayed = (JsonArray) JsonNode.Parse(jsonContent);
 
         var newSong = new JsonObject
         {
