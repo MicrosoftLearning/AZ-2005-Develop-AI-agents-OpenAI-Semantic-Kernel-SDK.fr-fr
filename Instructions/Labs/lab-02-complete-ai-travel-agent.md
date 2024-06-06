@@ -38,27 +38,15 @@ Pour effectuer l’exercice, les éléments suivants doivent être installés da
 Pour ces exercices, un projet de démarrage est mis à votre disposition. Effectuez les étapes suivantes pour configurer le projet de démarrage :
 
 > [!IMPORTANT]
-> Vous devez installer .NET Framework 8.0 et un compte Github pour effectuer ces étapes.
+> Vous devez avoir installé .NET Framework 8.0 ainsi que les extensions de VS Code pour C# et le gestionnaire de packages NuGet.
 
-1. Ouvrez Visual Studio Code.
+1. Téléchargez le fichier zip situé sur `https://github.com/MicrosoftLearning/AZ-2005-Develop-AI-agents-OpenAI-Semantic-Kernel-SDK/blob/master/Allfiles/Labs/02/Lab-02-Starter.zip`.
 
-1. Sous la section **Démarrer** de Visual Studio Code , sélectionnez **le référentiel git clone**.
+1. Extrayez le contenu du fichier zip vers un emplacement facile à trouver et à mémoriser, par exemple un dossier sur votre Bureau.
 
-1. Dans la barre d’URL, entrez `https://github.com/MicrosoftLearning/MSLearn-Develop-AI-Agents-with-Azure-OpenAI-and-Semantic-Kernel-SDK.git`
+1. Ouvrez Visual Studio Code, puis sélectionnez **Fichier** > **Ouvrir le dossier**.
 
-1. Dans l’Explorateur de fichiers, créez un dossier dans un emplacement facile à trouver et à mémoriser, tel qu’un dossier dans votre Bureau.
-
-1. Cliquez sur le bouton **Sélectionner en tant que destination du référentiel**.
-
-    Vous devez être connecté à GitHub pour cloner correctement le projet.
-
-1. Ouvrez le projet dans Visual Studio Code.
-
-1. Dans l’Explorateur, cliquez avec le bouton droit sur le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**, puis cliquez sur **Ouvrir dans le terminal intégré**.
-
-1. Développez le dossier **Lab01-create-music-recommendations-agent/Lab01-Project**.
-
-    Vous devez voir un fichier « Program.cs ».
+1. Accédez au dossier **Starter** que vous avez extrait, puis sélectionnez **Sélectionner un dossier**.
 
 1. Ouvrez le fichier **Program.cs** dans l’éditeur de code.
 
@@ -97,7 +85,7 @@ Pour cet exercice, vous créez un point de terminaison pour le service de grand 
 
     Vous vous servirez de ces valeurs pour générer votre noyau dans la tâche suivante. N’oubliez pas de mettre vos clés à l’abri, dans un emplacement privé et sécurisé.
 
-1. Ouvrez le fichier **Program.cs** dans Visual Studio Code.
+1. Retournez au fichier **Program.cs** dans Visual Studio Code.
 
 1. Mettez à jour les variables suivantes avec le nom de votre déploiement Azure Open AI Services, la clé API et le point de terminaison
 
