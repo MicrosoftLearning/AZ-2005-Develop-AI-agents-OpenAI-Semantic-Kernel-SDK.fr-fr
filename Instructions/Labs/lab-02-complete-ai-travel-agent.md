@@ -92,7 +92,7 @@ Pour cet exercice, vous créez un point de terminaison pour le service de grand 
     ```csharp
     string yourDeploymentName = "";
     string yourEndpoint = "";
-    string yourKey = "";
+    string yourApiKey = "";
     ```
 
     > [!NOTE]
