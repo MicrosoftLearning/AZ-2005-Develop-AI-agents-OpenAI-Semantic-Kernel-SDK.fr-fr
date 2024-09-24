@@ -145,7 +145,7 @@ Dans cette tâche, vous créez un plug-in qui vous permet d’ajouter des chanso
 
 1. Créez un dossier dans le répertoire « Lab01-Project » et nommez-le « Plugins ».
 
-1. Dans le dossier « Plugins », créez un fichier « MusicLibrary.cs »
+1. Dans le dossier « Plugins », créez un fichier « MusicLibraryPlugin.cs »
 
     Tout d’abord, créez des fonctions rapides pour obtenir et ajouter des chansons à la liste « Récemment écouté » de l’utilisateur.
 
@@ -232,6 +232,9 @@ Dans cette tâche, vous créez un plug-in qui vous permet d’ajouter des chanso
     ```
 
     Si vous ouvrez « Files/RecentlyPlayed.txt », vous devez voir la nouvelle chanson ajoutée à la liste.
+
+> [!NOTE]
+> Si le terminal affiche des avertissements pour les valeurs Null, vous pouvez les ignorer, car ils n’affectent pas le résultat.
 
 ### Tâche 2 : Fournir des recommandations personnalisées sur les chansons
 
