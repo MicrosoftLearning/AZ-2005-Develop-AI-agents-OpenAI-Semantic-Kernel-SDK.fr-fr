@@ -186,6 +186,8 @@ Dans cette tâche, vous allez créer une fonction native capable de convertir un
 
     Dans ce code, vous utilisez la méthode **ImportPluginFromType** pour importer votre plug-in. Ensuite, vous utilisez la méthode **InvokeAsync** pour appeler votre fonction de plug-in. La méthode **InvokeAsync** prend le nom du plug-in, le nom de la fonction et un dictionnaire de paramètres. Enfin, vous affichez le résultat dans la console. Ensuite, exécutez le code pour vérifier qu’il fonctionne.
 
+1. Ouvrez le terminal en sélectionnant Terminal > Nouveau terminal.
+
 1. Dans le terminal, entrez `dotnet run`. Vous devez normalement voir la sortie suivante.
 
     ```output
