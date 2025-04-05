@@ -189,7 +189,7 @@ Dans cette tâche, vous créez un plug-in qui vous permet d’ajouter des chanso
 
 1. Accédez au fichier **Program.cs**.
 
-1. Ajoutez le code suivant sous **Importer des plug-ins vers le noyau** :
+1. Ajoutez le code suivant sous le commentaire **Importer des plug-ins vers le noyau** :
 
     ```c#
     // Import plugins to the kernel
