@@ -1,14 +1,11 @@
 ---
 lab:
-  title: Créer un Assistant IA avec Semantic Kernel
-  description: Découvrez comment utiliser Semantic Kernel pour créer un assistant d’IA générative capable d’effectuer des tâches DevOps.
+  title: "Créer un assistant Devops avec le kit de développement logiciel (SDK) Semantic\_Kernel"
 ---
 
-# Créer un Assistant IA avec Semantic Kernel
+# Créer un assistant Devops avec le kit de développement logiciel (SDK) Semantic Kernel
 
-Dans ce labo, vous développez le code d’un assistant alimenté par l’IA conçu pour automatiser les opérations de développement et simplifier les tâches. Vous utilisez le kit de développement logiciel (SDK) Semantic Kernel pour générer l’assistant IA et le connecter au service de grand modèle de langage (LLM). Le SDK Semantic Kernel vous permet de créer une application intelligente qui peut interagir avec le service LLM, répondre aux requêtes en langage naturel et fournir des recommandations personnalisées à l’utilisateur. Pour cet exercice, les fonctions fictives sont fournies pour représenter des tâches DevOps classiques. C’est parti !
-
-Cet exercice prend environ **30** minutes.
+Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir). Vous utilisez le kit de développement logiciel (SDK) Semantic Kernel pour générer l’assistant IA et le connecter au service de grand modèle de langage (LLM). Le SDK de noyau sémantique vous permet de créer une application intelligente qui peut interagir avec le service LLM et fournir des recommandations personnalisées à l’utilisateur.
 
 ## Déployer un modèle de saisie semi-automatique de conversation
 
@@ -245,7 +242,7 @@ Cet exercice prend environ **30** minutes.
 
     > **Note** : dans la plupart des scénarios, l’utilisation d’*az login* suffit. Toutefois, si vous avez des abonnements dans plusieurs locataires, vous devrez peut-être spécifier le locataire à l’aide du paramètre *--tenant*. Pour plus d’informations, consultez [Se connecter à Azure de manière interactive à l’aide d’Azure CLI](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-interactively).
 
-1. Lorsque vous y êtes invité, suivez les instructions pour ouvrir la page de connexion dans un nouvel onglet et entrez le code d’authentification fourni et vos informations d’identification Azure. Terminez ensuite le processus de connexion dans la ligne de commande, en sélectionnant l’abonnement contenant votre hub Azure AI Foundry si vous y êtes invité.
+1. Lorsque vous y êtes invité, suivez les instructions pour ouvrir la page de connexion dans un nouvel onglet et entrez le code d’authentification fourni et vos informations d’identification Azure. Terminez ensuite le processus de connexion dans la ligne de commande, en sélectionnant l’abonnement contenant votre hub Azure AI Foundry si vous y êtes invité.
 
 1. Une fois connecté, entrez la commande suivante pour exécuter l’application :
 
@@ -460,7 +457,6 @@ Cet exercice prend environ **30** minutes.
 
     **Python**
     ```python
-    # Create a function filter
     async def permission_filter(context: FunctionInvocationContext, next: Callable[[FunctionInvocationContext], Awaitable[None]]) -> None:
         await next(context)
         result = context.result
