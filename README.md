@@ -1,3 +1,5 @@
+**⚠️ This GitHub repo will retire on 28th November 2025.** 
+
 # Développer des solutions d’IA générative à l’aide d’Azure OpenAI et du kit de développement logiciel (SDK) Semantic Kernel
 
 Les exercices dans ce référentiel sont conçus pour vous fournir une expérience d’apprentissage pratique qui va vous permettre d’explorer les tâches courantes que les développeurs effectuent lors de la création de solutions d’IA générative avec Semantic Kernel and Azure OpenAI.
