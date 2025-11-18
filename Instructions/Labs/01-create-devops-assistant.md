@@ -1,33 +1,42 @@
 ---
 lab:
-  title: "Créer un assistant Devops avec le kit de développement logiciel (SDK) Semantic\_Kernel"
+  title: Créer un Assistant IA avec Semantic Kernel
+  description: Découvrez comment utiliser Semantic Kernel pour créer un assistant d’IA générative capable d’effectuer des tâches DevOps.
 ---
 
-# Créer un assistant Devops avec le kit de développement logiciel (SDK) Semantic Kernel
+# Créer un Assistant IA avec Semantic Kernel
 
-Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir). Vous utilisez le kit de développement logiciel (SDK) Semantic Kernel pour générer l’assistant IA et le connecter au service de grand modèle de langage (LLM). Le SDK de noyau sémantique vous permet de créer une application intelligente qui peut interagir avec le service LLM et fournir des recommandations personnalisées à l’utilisateur.
+Dans ce labo, vous développez le code d’un assistant alimenté par l’IA conçu pour automatiser les opérations de développement et simplifier les tâches. Vous utilisez le kit de développement logiciel (SDK) Semantic Kernel pour générer l’assistant IA et le connecter au service de grand modèle de langage (LLM). Le SDK Semantic Kernel vous permet de créer une application intelligente qui peut interagir avec le service LLM, répondre aux requêtes en langage naturel et fournir des recommandations personnalisées à l’utilisateur. Pour cet exercice, les fonctions fictives sont fournies pour représenter des tâches DevOps classiques. C’est parti !
+
+Cet exercice prend environ **30** minutes.
 
 ## Déployer un modèle de saisie semi-automatique de conversation
 
 1. Accédez à [https://portal.azure.com](https://portal.azure.com).
 
-1. Créez une ressource Azure OpenAI en utilisant les paramètres par défaut.
+1. Créez une nouvelle ressource **Azure OpenAI** à l’aide des paramètres par défaut.
 
 1. Après la création de la ressource créée, sélectionnez **Accéder à la ressource**.
 
 1. Sur la page **Vue d’ensemble**, sélectionnez **Accéder au portail Azure AI Foundry**.
 
-1. Sélectionnez **Créer un déploiement**, puis **À partir de modèles de base**.
+    Le portail Azure AI Foundry devrait s’ouvrir dans un nouvel onglet.
 
-1. Recherchez le modèle **gpt-4o** dans la liste, puis sélectionnez-le et confirmez.
+1. Dans le volet de navigation gauche, sélectionnez **Déploiements**.
 
-1. Entrez un nom pour votre déploiement et conservez les options par défaut.
+1. Sélectionnez **Déployer le modèle**, puis **Déployer le modèle de base**.
 
-1. Une fois le déploiement terminé, revenez à votre ressource Azure OpenAI dans le portail Azure.
+1. Recherchez **gpt-4o** dans la liste des modèles, sélectionnez-le, puis choisissez **Confirmer**.
 
-1. Sous **Gestion des ressources**, accédez à **Clés et points de terminaison**.
+    Une boîte de dialogue devrait s’afficher pour configurer le déploiement vers votre ressource Azure OpenAI.
 
-    Vous allez utiliser les données ici dans la tâche suivante pour générer votre noyau. N’oubliez pas de garder vos clés privées et sécurisées !
+1. Passez en revue les paramètres et sélectionnez **Déployer**.
+
+    Une fois le déploiement terminé, la page des détails du déploiement s’affiche.
+
+1. Sous **Point de terminaison**, observez l’**URI cible** et la **Clé**.
+
+    Vous allez utiliser les valeurs indiquées ici dans la tâche suivante pour générer votre noyau. N’oubliez pas de mettre vos clés à l’abri, dans un emplacement privé et sécurisé.
 
 ## Préparer la configuration de l’application
 
@@ -99,23 +108,25 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
 
     Le fichier s’ouvre dans un éditeur de code.
 
-1. Mettez à jour les valeurs avec l’ID de modèle, le point de terminaison et la clé API Azure OpenAI Services.
+1. Mettez à jour les valeurs à partir du déploiement de votre modèle Azure OpenAI :
 
     **Python**
     ```python
-    MODEL_DEPLOYMENT=""
-    BASE_URL=""
+    MODEL_ENDPOINT=""
     API_KEY="
+    MODEL_DEPLOYMENT_NAME=""
     ```
 
     **C#**
     ```json
     {
-        "modelName": "",
-        "endpoint": "",
-        "apiKey": ""
+        "openai_endpoint": "",
+        "api_key": "",
+        "model_deployment_name": "",
     }
     ```
+
+> **Remarque** : Si vous utilisez C#, utilisez l’URL du point de terminaison **Azure OpenAI** sur la page **Accueil** de votre ressource pour la valeur `openai_endpoint`.
 
 1. Une fois que vous avez remplacé les valeurs, utilisez la commande **Ctrl+S** pour enregistrer vos modifications, puis utilisez la commande **Ctrl+Q** pour fermer l’éditeur de code tout en gardant la ligne de commande Cloud Shell ouverte.
 
@@ -140,9 +151,9 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
     # Create a kernel builder with Azure OpenAI chat completion
     kernel = Kernel()
     chat_completion = AzureChatCompletion(
-        deployment_name=deployment_name,
+        deployment_name=model_name,
         api_key=api_key,
-        base_url=base_url,
+        base_url=endpoint,
     )
     kernel.add_service(chat_completion)
     ```
@@ -150,11 +161,11 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
      ```c#
     // Create a kernel builder with Azure OpenAI chat completion
     var builder = Kernel.CreateBuilder();
-    builder.AddAzureOpenAIChatCompletion(modelId, endpoint, apiKey);
+    builder.AddAzureOpenAIChatCompletion(modelName, endpoint, apiKey);
     var kernel = builder.Build();
     ```
 
-1. En bas du fichier, recherchez le commentaire **Créer une fonction noyau pour générer l’environnement intermédiaire** et ajoutez le code suivant pour créer une fonction de plug-in fictif qui générera l’environnement intermédiaire :
+1. Dans la classe **DevopsPlugin** vers le bas du fichier, recherchez le commentaire **Créer une fonction noyau pour générer l’environnement de test**, puis ajoutez le code suivant pour créer une fonction de plug-in fictive qui générera l’environnement de test :
 
     **Python**
     ```python
@@ -176,7 +187,7 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
 
     Le décorateur `KernelFunction` déclare votre fonction native. Vous utilisez un nom descriptif pour la fonction afin que l’IA puisse l’appeler correctement. 
 
-1. Accédez au commentaire **Importer des plug-ins vers le noyau** et ajoutez le code suivant :
+1. Dans la méthode **main**, accédez au commentaire **Importer les plu-ins dans le noyau** et ajoutez le code suivant pour utiliser la classe de plug-in que vous avez créée :
 
     **Python**
     ```python
@@ -189,7 +200,6 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
     // Import plugins to the kernel
     kernel.ImportPluginFromType<DevopsPlugin>();
     ```
-
 
 1. Sous le commentaire **Créer des paramètres d’exécution d’invite**, ajoutez le code suivant pour appeler automatiquement la fonction :
 
@@ -240,9 +250,9 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
 
     **<font color="red">Vous devez vous connecter à Azure, même si la session Cloud Shell est déjà authentifiée.</font>**
 
-    > **Note** : dans la plupart des scénarios, l’utilisation d’*az login* suffit. Toutefois, si vous avez des abonnements dans plusieurs locataires, vous devrez peut-être spécifier le locataire à l’aide du paramètre *--tenant*. Pour plus d’informations, consultez [Se connecter à Azure de manière interactive à l’aide d’Azure CLI](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-interactively).
+    > **Remarque** :dans la plupart des scénarios, l’utilisation d’*az login* suffit. Toutefois, si vous avez des abonnements dans plusieurs locataires, vous devrez peut-être spécifier le locataire à l’aide du paramètre *--tenant*. Pour plus d’informations, consultez [Se connecter à Azure de manière interactive à l’aide d’Azure CLI](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-interactively).
 
-1. Lorsque vous y êtes invité, suivez les instructions pour ouvrir la page de connexion dans un nouvel onglet et entrez le code d’authentification fourni et vos informations d’identification Azure. Terminez ensuite le processus de connexion dans la ligne de commande, en sélectionnant l’abonnement contenant votre hub Azure AI Foundry si vous y êtes invité.
+1. Lorsque l’invite apparaît, suivez les instructions pour ouvrir la page de connexion dans un nouvel onglet et entrez le code d’authentification fourni ainsi que vos informations d’identification Azure. Effectuez ensuite le processus de connexion dans la ligne de commande, en sélectionnant l’abonnement contenant votre hub Azure AI Foundry si nécessaire.
 
 1. Une fois connecté, entrez la commande suivante pour exécuter l’application :
 
@@ -331,7 +341,9 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
     Assistant: The stage environment cannot be deployed because the earlier stage build failed due to unit test errors. Deploying a faulty build to stage may cause eventual issues and compromise the environment.
     ```
 
-    Votre réponse du LLM peut varier, mais elle empêche toujours de déployer le site intermédiaire.
+    Votre réponse du LLM peut varier, mais elle empêche toujours de déployer le site intermédiaire. 
+    
+1. Appuyez sur <kbd>Entrée</kbd> pour mettre fin au programme.
 
 ## Créer une invite Handlebars
 
@@ -451,12 +463,15 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
     Assistant: The new branch `feature-login` has been successfully created from `main`.
     ```
 
+1. Appuyez sur <kbd>Entrée</kbd> pour mettre fin au programme.
+
 ## Exiger le consentement de l’utilisateur pour les actions
 
 1. En bas du fichier, recherchez le commentaire **Créer un filtre de fonction** et ajoutez le code suivant :
 
     **Python**
     ```python
+    # Create a function filter
     async def permission_filter(context: FunctionInvocationContext, next: Callable[[FunctionInvocationContext], Awaitable[None]]) -> None:
         await next(context)
         result = context.result
@@ -502,9 +517,11 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
 
     Ce code utilise l’objet `FunctionInvocationContext` pour déterminer le plug-in et la fonction qui ont été appelés.
 
-1. Ajoutez la logique suivante pour demander l’autorisation de l’utilisateur pour réserver le vol :
+1. Ajoutez la logique suivante pour demander à l’utilisateur l’autorisation de poursuivre l’opération :
 
-     **Python**
+    Veillez à conserver le bon niveau de retrait.
+
+    **Python**
     ```python
     # Request user approval
     print("System Message: The assistant requires approval to complete this operation. Do you approve (Y/N)")
@@ -569,6 +586,8 @@ Dans ce labo, vous créez le code d’un assistant IA qui (fonction à définir)
     User: N
     Assistant: I'm sorry, but I am unable to proceed with the deployment.
     ```
+
+1. Appuyez sur <kbd>Entrée</kbd> pour mettre fin au programme.
 
 ### Révision
 
